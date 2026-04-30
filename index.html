@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Machine Learning Foundations Handbook</title>
+
+        <!-- Lock colors to prevent extensions like Dark Reader from changing the theme -->
+        <meta name="darkreader-lock" />
+
+        <!-- Typography -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Syntax Highlighting: Prism.js -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- Icons: Lucide -->
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <!-- Custom Styles -->
+        <link rel="stylesheet" href="book/style.css" />
+        <link rel="icon" type="image/png" href="book/logo.png" />
+    </head>
+    <body>
+        <div id="app">
+            <header>
+                <div class="header-left">
+                    <button
+                        class="menu-toggle"
+                        onclick="toggleMenu()"
+                        title="Table of Contents (Esc)"
+                    >
+                        <i data-lucide="menu"></i>
+                        <span>Table of Content</span>
+
+                    </button>
+                    <div class="brand">
+                        <img src="book/logo.png" alt="Logo" class="brand-logo" />
+                        <div class="brand-text">
+                            <span class="brand-title">ML Foundations</span>
+                            <span class="brand-subtitle">Theory & Mathematics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <button
+                        class="search-btn-header"
+                        onclick="openCmdPalette()"
+                        title="Search Topics"
+                    >
+                        <i
+                            data-lucide="search"
+                            style="width: 16px; height: 16px"
+                        ></i>
+                        <span>Search</span>
+                        <kbd>Ctrl K</kbd>
+                    </button>
+                </div>
+            </header>
+
+            <main id="book-layout" class="book-layout loaded show-theory">
+                <aside class="left-sidebar">
+                    <div class="sidebar-title">Table of Content</div>
+
+                    <div id="persistent-menu-content"></div>
+                </aside>
+
+                <section id="theory-pane" class="theory-pane">
+                    <div id="theory-content-area" class="theory-inner">
+                        <!-- Dynamic content injected here -->
+                    </div>
+                </section>
+
+                <aside class="right-sidebar">
+                    <div class="sidebar-title">On This Page</div>
+                    <div id="in-page-toc"></div>
+                </aside>
+            </main>
+
+            <footer class="app-footer">
+                <div class="footer-content" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <span>© 2026 MACHINE LEARNING FOUNDATIONS</span>
+                    <div class="footer-branding" style="display: flex; align-items: center; gap: 0.5rem; opacity: 0.8;">
+                        <i data-lucide="code" style="width: 14px; height: 14px;"></i>
+                        <span style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">
+                            Handbook by <span style="color: var(--accent-color); font-weight: 800;">Divya Prakash</span>
+                        </span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+
+        <!-- Sidebar / Navigation Overlay -->
+        <div id="sidebar-overlay" class="sidebar-overlay">
+            <div class="menu-container">
+                <button class="close-menu" onclick="toggleMenu()">
+                    <i data-lucide="x"></i>
+                </button>
+                <div id="menu-content">
+                    <!-- TOC injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Command Palette -->
+        <div id="cmd-palette-overlay" class="modal">
+            <div class="modal-content">
+                <div class="cmd-input-wrapper">
+                    <i data-lucide="search"></i>
+                    <input
+                        type="text"
+                        id="cmd-palette-input"
+                        placeholder="Search topics, categories..."
+                        autocomplete="off"
+                    />
+                </div>
+                <div id="cmd-palette-results" class="cmd-results"></div>
+                <div class="cmd-footer">
+                    <span><kbd>ESC</kbd> to close</span>
+                    <span><kbd>↵</kbd> to select</span>
+                    <span><kbd>←</kbd> <kbd>→</kbd> to navigate</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="app-toast" class="toast"></div>
+
+        <!-- Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+        <!-- MathJax for LaTeX -->
+        <script>
+            window.MathJax = {
+                tex: {
+                    inlineMath: [
+                        ["$", "$"],
+                        ["\\(", "\\)"],
+                    ],
+                    displayMath: [
+                        ["$$", "$$"],
+                        ["\\[", "\\]"],
+                    ],
+                    processEscapes: true,
+                    processEnvironments: true,
+                },
+                options: {
+                    skipHtmlTags: [
+                        "script",
+                        "noscript",
+                        "style",
+                        "textarea",
+                        "pre",
+                        "code",
+                    ],
+                },
+            };
+        </script>
+        <script
+            id="MathJax-script"
+            async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        ></script>
+
+        <!-- Data & App Logic -->
+        <script src="book/book_data.js"></script>
+        <script src="book/app.js"></script>
+
+        <script>
+            // Initialize Lucide icons on load
+            window.addEventListener("load", () => {
+                lucide.createIcons();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,144 @@
+{
+    "course_title": "Machine Learning Foundations",
+    "course_code": "ML-FND",
+    "categories": [
+        {
+            "id": "01",
+            "title": "Foundations of Learning",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Introduction to ML",
+                    "file": "introduction_to_ml.md"
+                },
+                {
+                    "id": "02",
+                    "title": "Supervised Learning",
+                    "file": "supervised_learning.md"
+                },
+                {
+                    "id": "03",
+                    "title": "Unsupervised & Density",
+                    "file": "unsupervised_and_density.md"
+                },
+                {
+                    "id": "04",
+                    "title": "Model Performance",
+                    "file": "model_performance.md"
+                },
+                {
+                    "id": "05",
+                    "title": "Foundations: Comprehensive Examples",
+                    "file": "practice_lab.md"
+                }
+            ]
+        },
+        {
+            "id": "02",
+            "title": "Calculus and Geometry",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Calculus Foundations",
+                    "file": "calculus_foundations.md"
+                },
+                {
+                    "id": "02",
+                    "title": "Multivariable & Geometry",
+                    "file": "multivariable_and_geometry.md"
+                },
+                {
+                    "id": "03",
+                    "title": "Calculus: Numerical Applications",
+                    "file": "calculus_practice.md"
+                }
+            ]
+        },
+        {
+            "id": "03",
+            "title": "Linear Algebra Foundations",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Linear Systems",
+                    "file": "linear_systems.md"
+                },
+                {
+                    "id": "02",
+                    "title": "Vector Spaces",
+                    "file": "vector_spaces.md"
+                },
+                {
+                    "id": "03",
+                    "title": "Projections & Least Squares",
+                    "file": "projections_and_least_squares.md"
+                },
+                {
+                    "id": "04",
+                    "title": "Linear Algebra: Solved Problems",
+                    "file": "linear_algebra_practice.md"
+                }
+            ]
+        },
+        {
+            "id": "04",
+            "title": "Spectral Theory and SVD",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Eigenvalues & Spectral Theory",
+                    "file": "eigenvalues_and_spectral.md"
+                },
+                {
+                    "id": "02",
+                    "title": "SVD: Theory & Worked Examples",
+                    "file": "svd_theory_and_practice.md"
+                }
+            ]
+        },
+        {
+            "id": "05",
+            "title": "Dimensionality Reduction",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "PCA: Complete Theory & Practice",
+                    "file": "pca_full_guide.md"
+                }
+            ]
+        },
+        {
+            "id": "06",
+            "title": "Optimization",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Optimization: Full Guide",
+                    "file": "optimization_full_guide.md"
+                }
+            ]
+        },
+        {
+            "id": "07",
+            "title": "Probability and Statistics",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Probability & Statistical Foundations",
+                    "file": "probability_and_distributions.md"
+                }
+            ]
+        },
+        {
+            "id": "08",
+            "title": "Revisions",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Quiz 1 Review",
+                    "file": "01_quizzes/quiz_1_review.md"
+                }
+            ]
+        }
+    ]
+}
