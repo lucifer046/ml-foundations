@@ -428,6 +428,15 @@ function renderTheory(data) {
     });
 
     if (window.lucide) lucide.createIcons();
+
+    // 8. Wrap Tables for Responsiveness
+    theoryContent.querySelectorAll('table').forEach(table => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'table-wrapper';
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+    });
+
     generateInPageTOC();
 }
 
