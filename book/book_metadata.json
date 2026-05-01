@@ -4,139 +4,133 @@
     "categories": [
         {
             "id": "01",
-            "title": "Foundations of Learning",
+            "title": "WEEK 1: Introduction to ML",
             "topics": [
                 {
                     "id": "01",
-                    "title": "Introduction to ML",
-                    "file": "introduction_to_ml.md"
-                },
-                {
-                    "id": "02",
-                    "title": "Supervised Learning",
-                    "file": "supervised_learning.md"
-                },
-                {
-                    "id": "03",
-                    "title": "Unsupervised & Density",
-                    "file": "unsupervised_and_density.md"
-                },
-                {
-                    "id": "04",
-                    "title": "Model Performance",
-                    "file": "model_performance.md"
-                },
-                {
-                    "id": "05",
-                    "title": "Foundations: Comprehensive Examples",
-                    "file": "practice_lab.md"
+                    "title": "Introduction to Machine Learning",
+                    "file": "WEEK 1/Introduction_to_Machine_Learning.md"
                 }
             ]
         },
         {
             "id": "02",
-            "title": "Calculus and Geometry",
+            "title": "WEEK 2: Calculus",
             "topics": [
                 {
                     "id": "01",
-                    "title": "Calculus Foundations",
-                    "file": "calculus_foundations.md"
-                },
-                {
-                    "id": "02",
-                    "title": "Multivariable & Geometry",
-                    "file": "multivariable_and_geometry.md"
-                },
-                {
-                    "id": "03",
-                    "title": "Calculus: Numerical Applications",
-                    "file": "calculus_practice.md"
+                    "title": "Calculus",
+                    "file": "WEEK 2/Calculus.md"
                 }
             ]
         },
         {
             "id": "03",
-            "title": "Linear Algebra Foundations",
+            "title": "WEEK 3: Linear Algebra - Least Squares",
             "topics": [
                 {
                     "id": "01",
-                    "title": "Linear Systems",
-                    "file": "linear_systems.md"
-                },
-                {
-                    "id": "02",
-                    "title": "Vector Spaces",
-                    "file": "vector_spaces.md"
-                },
-                {
-                    "id": "03",
-                    "title": "Projections & Least Squares",
-                    "file": "projections_and_least_squares.md"
-                },
-                {
-                    "id": "04",
-                    "title": "Linear Algebra: Solved Problems",
-                    "file": "linear_algebra_practice.md"
+                    "title": "Linear Algebra & Least Squares",
+                    "file": "WEEK 3/Linear_Algebra_Least_Squares.md"
                 }
             ]
         },
         {
             "id": "04",
-            "title": "Spectral Theory and SVD",
+            "title": "WEEK 4: Linear Algebra - Eigenvalues",
             "topics": [
                 {
                     "id": "01",
-                    "title": "Eigenvalues & Spectral Theory",
-                    "file": "eigenvalues_and_spectral.md"
-                },
-                {
-                    "id": "02",
-                    "title": "SVD: Theory & Worked Examples",
-                    "file": "svd_theory_and_practice.md"
+                    "title": "Eigenvalues and Eigenvectors",
+                    "file": "WEEK 4/Eigenvalues_and_Eigenvectors.md"
                 }
             ]
         },
         {
             "id": "05",
-            "title": "Dimensionality Reduction",
+            "title": "WEEK 5: Linear Algebra - Symmetric Matrices",
             "topics": [
                 {
                     "id": "01",
-                    "title": "PCA: Complete Theory & Practice",
-                    "file": "pca_full_guide.md"
+                    "title": "Symmetric Matrices & Spectral Theory",
+                    "file": "WEEK 5/Symmetric_Matrices_and_Spectral_Theory.md"
                 }
             ]
         },
         {
             "id": "06",
-            "title": "Optimization",
+            "title": "WEEK 6: SVD and PCA",
             "topics": [
                 {
                     "id": "01",
-                    "title": "Optimization: Full Guide",
-                    "file": "optimization_full_guide.md"
+                    "title": "SVD and PCA",
+                    "file": "WEEK 6/SVD_and_PCA.md"
                 }
             ]
         },
         {
             "id": "07",
-            "title": "Probability and Statistics",
+            "title": "WEEK 7: Unconstrained Optimization",
             "topics": [
                 {
                     "id": "01",
-                    "title": "Probability & Statistical Foundations",
-                    "file": "probability_and_distributions.md"
+                    "title": "Unconstrained Optimization",
+                    "file": "WEEK 7/Unconstrained_Optimization.md"
                 }
             ]
         },
         {
             "id": "08",
-            "title": "Revisions",
+            "title": "WEEK 8: Convex Optimization",
             "topics": [
                 {
                     "id": "01",
-                    "title": "Quiz 1 Review",
-                    "file": "01_quizzes/quiz_1_review.md"
+                    "title": "Convex Optimization",
+                    "file": "WEEK 8/Convex_Optimization.md"
+                }
+            ]
+        },
+        {
+            "id": "09",
+            "title": "WEEK 9: Constrained Optimization",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Constrained Optimization",
+                    "file": "WEEK 9/Constrained_Optimization.md"
+                }
+            ]
+        },
+        {
+            "id": "10",
+            "title": "WEEK 10: Probabilistic Models",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Probability & Bayes' Theorem",
+                    "file": "WEEK 10/Probabilistic_Models.md"
+                }
+            ]
+        },
+        {
+            "id": "11",
+            "title": "WEEK 11: Exponential Family",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Exponential Family of Distributions",
+                    "file": "WEEK 11/Exponential_Family.md"
+                }
+            ]
+        },
+        {
+            "id": "12",
+            "title": "WEEK 12: Parameter Estimation & EM",
+            "topics": [
+                {
+                    "id": "01",
+                    "title": "Parameter Estimation & EM",
+                    "file": "WEEK 12/Parameter_Estimation_and_EM.md"
                 }
             ]
         }

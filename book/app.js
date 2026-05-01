@@ -6,7 +6,8 @@ let isResizing = false;
 let currentZoom = 0.95;
 
 // ---- DOM Elements ----
-const theoryPane = document.getElementById('theory-content-area');
+const theoryPane = document.getElementById('theory-pane');
+const theoryContentArea = document.getElementById('theory-content-area');
 const codeContainer = document.getElementById('code-container');
 const bookLayout = document.getElementById('book-layout');
 const sidebarOverlay = document.getElementById('sidebar-overlay');
@@ -73,13 +74,34 @@ const XRAY_DICTIONARY = {
 // =========================================
 //  MARKDOWN CONFIGURATION
 // =========================================
+// =========================================
+//  MARKDOWN CONFIGURATION
+// =========================================
+function parseMarkdown(text) {
+    try {
+        if (typeof marked.parse === 'function') {
+            return marked.parse(text);
+        } else if (typeof marked === 'function') {
+            return marked(text);
+        }
+        return text;
+    } catch (e) {
+        console.error('Markdown parsing error:', e);
+        return text;
+    }
+}
+
 marked.use({
     renderer: {
-        code(code, language) {
-            if (language === 'mermaid') {
-                return `<div class="mermaid">\n${code}\n</div>`;
+        code(tokenOrCode, infostring) {
+            const code = typeof tokenOrCode === 'object' ? tokenOrCode.text : tokenOrCode;
+            const rawLang = typeof tokenOrCode === 'object' ? tokenOrCode.lang : infostring;
+            const lang = (rawLang || '').trim().toLowerCase();
+            
+            if (lang === 'mermaid') {
+                return `<div class="mermaid">${code}</div>`;
             }
-            return false; // Use default renderer for other languages
+            return `<pre><code class="language-${lang}">${code}</code></pre>`;
         }
     }
 });
@@ -88,11 +110,13 @@ marked.use({
 //  INITIALIZATION
 // =========================================
 function init() {
-    renderMenu();
-    setupEventListeners();
-    
-    // Default start with home page
-    loadHome();
+    try {
+        renderMenu();
+        setupEventListeners();
+        loadHome();
+    } catch (e) {
+        console.error('Initialization error:', e);
+    }
 }
 
 // =========================================
@@ -104,30 +128,24 @@ function loadHome() {
     bookLayout.classList.add('home-mode');
     renderMenu(null);
     
-    // Provide a relatable ML network background SVG
     const networkSVG = `
         <svg class="network-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;opacity:0.6;z-index:0;pointer-events:none;">
-            <!-- Network Connections -->
             <line x1="5%" y1="20%" x2="20%" y2="40%" class="network-path"/>
             <line x1="20%" y1="40%" x2="30%" y2="10%" class="network-path"/>
             <line x1="30%" y1="10%" x2="45%" y2="50%" class="network-path"/>
             <line x1="45%" y1="50%" x2="60%" y2="20%" class="network-path"/>
             <line x1="60%" y1="20%" x2="75%" y2="70%" class="network-path"/>
             <line x1="75%" y1="70%" x2="85%" y2="30%" class="network-path"/>
-
             <line x1="10%" y1="70%" x2="20%" y2="40%" class="network-path"/>
             <line x1="20%" y1="40%" x2="35%" y2="80%" class="network-path"/>
             <line x1="35%" y1="80%" x2="45%" y2="50%" class="network-path"/>
             <line x1="45%" y1="50%" x2="55%" y2="90%" class="network-path"/>
             <line x1="55%" y1="90%" x2="75%" y2="70%" class="network-path"/>
             <line x1="75%" y1="70%" x2="95%" y2="95%" class="network-path"/>
-
             <line x1="5%" y1="20%" x2="10%" y2="70%" class="network-path"/>
             <line x1="30%" y1="10%" x2="35%" y2="80%" class="network-path"/>
             <line x1="60%" y1="20%" x2="55%" y2="90%" class="network-path"/>
             <line x1="85%" y1="30%" x2="95%" y2="95%" class="network-path"/>
-
-            <!-- Network Nodes -->
             <circle cx="5%" cy="20%" r="4" fill="#64748b" style="animation-delay: 0s;"/>
             <circle cx="20%" cy="40%" r="5" fill="#64748b" style="animation-delay: 1s;"/>
             <circle cx="30%" cy="10%" r="4.5" fill="#64748b" style="animation-delay: 2s;"/>
@@ -142,7 +160,7 @@ function loadHome() {
         </svg>
     `;
 
-    theoryPane.innerHTML = `
+    theoryContentArea.innerHTML = `
         <div class="home-card">
             ${networkSVG}
             <div class="home-content-wrapper">
@@ -157,13 +175,13 @@ function loadHome() {
         </div>
     `;
     
-    lucide.createIcons();
+    if (window.lucide) lucide.createIcons();
     const inPageTocContainer = document.getElementById('in-page-toc');
     if (inPageTocContainer) inPageTocContainer.innerHTML = '';
     
-    // Ensure visibility
     setTimeout(() => {
         bookLayout.classList.add('loaded');
+        if (theoryPane) theoryPane.scrollTo(0, 0);
     }, 50);
 }
 
@@ -179,12 +197,10 @@ function toggleCategory(header) {
     const category = header.parentElement;
     const isOpen = category.classList.contains('open');
     
-    // Close all other categories in both menus
     document.querySelectorAll('.menu-category').forEach(cat => {
         cat.classList.remove('open');
     });
     
-    // If it wasn't open, open it
     if (!isOpen) {
         category.classList.add('open');
     }
@@ -199,37 +215,56 @@ function renderMenu(activeId = null) {
         </div>
     `;
 
-    
     metadata.categories.forEach(cat => {
         const isCatActive = cat.topics.some(t => `${cat.id}.${t.id}` === activeId);
-        const openClass = isCatActive ? 'open' : '';
-
-        html += `
-            <div class="menu-category ${openClass}">
-                <div class="menu-category-title" onclick="toggleCategory(this)">
-                    ${cat.title}
-                    <i data-lucide="chevron-down"></i>
+        
+        if (cat.topics.length === 1) {
+            // Single-topic Week: No dropdown
+            const topic = cat.topics[0];
+            const id = `${cat.id}.${topic.id}`;
+            const active = id === activeId ? 'active' : '';
+            const [weekLabel, topicLabel] = cat.title.includes(': ') ? cat.title.split(': ') : [cat.title, ''];
+            
+            html += `
+                <div class="menu-item ${active} single-week" onclick="loadTopic('${id}')">
+                    <span class="week-num">${weekLabel}</span>
+                    <span class="week-title">${topicLabel}</span>
                 </div>
-                <div class="menu-topics">
-                    <div class="menu-topics-inner">
-                        ${cat.topics.map(topic => {
-                            const id = `${cat.id}.${topic.id}`;
-                            const active = id === activeId ? 'active' : '';
-                            return `<div class="menu-item ${active}" onclick="loadTopic('${id}')">${topic.title}</div>`;
-                        }).join('')}
+            `;
+        } else {
+            // Multi-topic Week: Keep dropdown
+            const isCatActive = cat.topics.some(t => `${cat.id}.${t.id}` === activeId);
+            const openClass = isCatActive ? 'open' : '';
+            const [weekLabel, topicLabel] = cat.title.includes(': ') ? cat.title.split(': ') : [cat.title, ''];
+
+            html += `
+                <div class="menu-category ${openClass}">
+                    <div class="menu-category-title" onclick="toggleCategory(this)">
+                        <div class="cat-label-group">
+                            <span class="week-num">${weekLabel}</span>
+                            <span class="week-title">${topicLabel}</span>
+                        </div>
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <div class="menu-topics">
+                        <div class="menu-topics-inner">
+                            ${cat.topics.map(topic => {
+                                const id = `${cat.id}.${topic.id}`;
+                                const active = id === activeId ? 'active' : '';
+                                return `<div class="menu-item ${active}" onclick="loadTopic('${id}')">${topic.title}</div>`;
+                            }).join('')}
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
+            `;
+        }
     });
     
     menuContent.innerHTML = html;
 
-
-
     const persistentMenu = document.getElementById('persistent-menu-content');
     if (persistentMenu) persistentMenu.innerHTML = html;
-    lucide.createIcons();
+    if (window.lucide) lucide.createIcons();
 }
 
 function loadTopic(id) {
@@ -244,63 +279,94 @@ function loadTopic(id) {
     bookLayout.classList.remove('loaded');
     bookLayout.classList.remove('home-mode');
     
+    // Immediate scroll reset before transition
+    if (theoryPane) {
+        theoryPane.style.scrollBehavior = 'auto';
+        theoryPane.scrollTop = 0;
+    }
+    window.scrollTo(0, 0);
+
     setTimeout(() => {
-        // Update Theory
-        renderTheory(data);
-        
-        // Finalize
-        bookLayout.classList.add('loaded');
-        
         try {
+            // Update Theory
+            renderTheory(data);
+            
+            // Finalize
+            bookLayout.classList.add('loaded');
+            
             if (typeof mermaid !== 'undefined') {
-                // Catch potential promise errors from mermaid.run
-                const mermaidPromise = mermaid.run({ querySelector: '.mermaid' });
-                if (mermaidPromise && mermaidPromise.catch) {
-                    mermaidPromise.catch(e => console.warn('Mermaid rendering warning:', e));
-                }
+                mermaid.initialize({ 
+                    startOnLoad: false, 
+                    securityLevel: 'loose',
+                    theme: 'dark'
+                });
+                
+                setTimeout(() => {
+                    if (typeof mermaid.run === 'function') {
+                        mermaid.run({ querySelector: '.mermaid' }).catch(e => console.warn(e));
+                    } else if (typeof mermaid.init === 'function') {
+                        mermaid.init(undefined, '.mermaid');
+                    }
+                }, 50);
             }
-        } catch (e) {
-            console.error('Mermaid initialization error:', e);
-        }
-        
-        if (window.Prism) {
-            Prism.highlightAll();
-        }
-        
-        if (window.MathJax) {
-            MathJax.typesetPromise().then(() => {
+            
+            if (window.Prism) Prism.highlightAll();
+            
+            if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+                MathJax.typesetPromise().then(() => applyXRay()).catch(() => applyXRay());
+            } else {
                 applyXRay();
-            });
-        } else {
-            applyXRay();
+            }
+            
+            if (theoryPane) theoryPane.scrollTo(0, 0);
+            window.scrollTo(0, 0);
+        } catch (err) {
+            console.error('Error loading topic:', err);
+            // Even on error, show the layout so it's not a blank screen
+            bookLayout.classList.add('loaded');
         }
-        
-        window.scrollTo(0, 0);
     }, 200);
 }
 
 function renderTheory(data) {
-    let theoryMarkdown = data.theory;
+    let theoryMarkdown = data.theory || '';
 
-    // Fix for MathJax matrices: escape backslashes within math blocks 
-    // so 'marked' doesn't eat the line breaks (\\)
-    theoryMarkdown = theoryMarkdown.replace(/\$\$([\s\S]*?)\$\$/g, (m, p1) => '$$' + p1.replace(/\\/g, '\\\\') + '$$');
-    theoryMarkdown = theoryMarkdown.replace(/\$([\s\S]*?)\$/g, (m, p1) => '$' + p1.replace(/\\/g, '\\\\') + '$');
+    // 1. Protect Math Blocks
+    const mathBlocks = [];
+    theoryMarkdown = theoryMarkdown.replace(/\$\$([\s\S]*?)\$\$/g, (match) => {
+        const token = `[MATHBLOCK_ID_${mathBlocks.length}]`;
+        mathBlocks.push(match);
+        return token;
+    });
+    theoryMarkdown = theoryMarkdown.replace(/\$([\s\S]*?)\$/g, (match) => {
+        const token = `[MATHBLOCK_ID_${mathBlocks.length}]`;
+        mathBlocks.push(match);
+        return token;
+    });
 
+    // 2. Protect HTML Visualization Blocks
+    const htmlBlocks = [];
+    theoryMarkdown = theoryMarkdown.replace(/<div class="theory-box[\s\S]*?<\/div>/g, (match) => {
+        const token = `[HTMLBLOCK_ID_${htmlBlocks.length}]`;
+        htmlBlocks.push(match);
+        return token;
+    });
 
-    // Process callouts BEFORE markdown parsing
+    // 3. Process callouts
     const alertRegex = /^>\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\][ \t]*\r?\n((?:>.*(?:\r?\n|$))*)/gm;
     theoryMarkdown = theoryMarkdown.replace(alertRegex, (match, type, content) => {
         const iconMap = { 'NOTE': 'info', 'TIP': 'lightbulb', 'IMPORTANT': 'alert-circle', 'WARNING': 'alert-triangle', 'CAUTION': 'zap' };
         const cleaned = content.replace(/^>\s?/gm, '').trim();
-        return `
-<div class="callout callout-${type.toLowerCase()}">
-    <div class="callout-title"><i data-lucide="${iconMap[type]}"></i>${type}</div>
-    <div>${marked.parse(cleaned)}</div>
-</div>
-`;
+        return `<div class="callout callout-${type.toLowerCase()}">
+            <div class="callout-title"><i data-lucide="${iconMap[type]}"></i>${type}</div>
+            <div>${parseMarkdown(cleaned)}</div>
+        </div>`;
     });
 
+    // 4. Parse Markdown
+    let theoryHtml = parseMarkdown(theoryMarkdown);
+
+    // 5. Build layout structure
     const { prev, next } = getTopicNeighbors(currentTopicId);
     const navHtml = `
         <div class="page-navigation">
@@ -315,7 +381,7 @@ function renderTheory(data) {
             ` : '<div class="nav-placeholder"></div>'}
 
             ${next ? `
-                <div class="nav-button next" onclick="loadTopic('${next.id}')" title="Next Topic (→)">
+                <div class="nav-button next" onclick="loadTopic('${next.id}')" title="Next Up (→)">
                     <div class="nav-content">
                         <span class="nav-label">Next Up</span>
                         <span class="nav-title">${next.title}</span>
@@ -326,16 +392,42 @@ function renderTheory(data) {
         </div>
     `;
 
-    let theoryHtml = `
+    theoryContentArea.innerHTML = `
         <h1 class="theory-title">${data.title}</h1>
-        <div class="theory-content">
-            ${marked.parse(theoryMarkdown)}
+        <div class="theory-inner">
+            <div class="theory-content">
+                ${theoryHtml}
+            </div>
             ${navHtml}
         </div>
     `;
 
-    theoryPane.innerHTML = theoryHtml;
-    lucide.createIcons();
+    const theoryContent = theoryContentArea.querySelector('.theory-content');
+
+    // 6. Restore HTML Blocks (SVGs)
+    htmlBlocks.forEach((html, i) => {
+        const token = `[HTMLBLOCK_ID_${i}]`;
+        theoryContent.innerHTML = theoryContent.innerHTML.split(token).join(html);
+    });
+
+    // 7. Restore Math Blocks (SAFE TEXTNODE INJECTION)
+    const walk = document.createTreeWalker(theoryContent, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    const textNodes = [];
+    while(node = walk.nextNode()) {
+        textNodes.push(node);
+    }
+
+    mathBlocks.forEach((math, i) => {
+        const token = `[MATHBLOCK_ID_${i}]`;
+        textNodes.forEach(n => {
+            if (n.textContent.includes(token)) {
+                n.textContent = n.textContent.split(token).join(math);
+            }
+        });
+    });
+
+    if (window.lucide) lucide.createIcons();
     generateInPageTOC();
 }
 

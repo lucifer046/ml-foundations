@@ -16,23 +16,9 @@ def build_book_data():
         cat_id = cat['id']
         cat_title = cat['title']
         
-        # Find base directory matching category ID (e.g., 01_Foundations_of_Learning)
-        cat_dir = None
-        for d in os.listdir('.'):
-            if os.path.isdir(d) and d.startswith(cat_id + '_'):
-                cat_dir = d
-                break
-        
-        if not cat_dir:
-            print(f"Warning: Directory for category {cat_id} not found.")
-            continue
-
         for topic in cat['topics']:
             topic_id = topic['id']
-            # The 'file' in metadata can now be a path like "01_introduction_ml/01_what_is_ml.md"
-            rel_md_path = topic['file']
-            
-            md_path = os.path.join(cat_dir, rel_md_path)
+            md_path = topic['file']
             code_path = md_path.replace('.md', '.py')
 
             theory_content = ""
