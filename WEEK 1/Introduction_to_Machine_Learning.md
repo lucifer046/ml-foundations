@@ -12,7 +12,9 @@ At its core, Machine Learning is about finding a function $h$ (the hypothesis) f
 - **Feature Space ($\mathcal{X}$):** A $d$-dimensional space where each instance is represented as a vector $\mathbf{x} \in \mathbb{R}^d$.
 - **Label Space ($\mathcal{Y}$):** The set of all possible outputs. For regression, $\mathcal{Y} = \mathbb{R}$. For binary classification, $\mathcal{Y} = \{0, 1\}$.
 - **Dataset ($\mathcal{D}$):** A collection of $n$ samples drawn from an unknown distribution $P(\mathbf{x}, y)$:
-  $$\mathcal{D} = \{(\mathbf{x}^{(i)}, y^{(i)})\}_{i=1}^n$$
+  <div class="formula-box">
+$$\mathcal{D} = \{(\mathbf{x}^{(i)}, y^{(i)})\}_{i=1}^n$$
+</div>
 
 ### Real-Life Application (Short Example)
 **Credit Scoring:** A bank uses a feature vector $\mathbf{x}$ (containing income, age, and debt) to predict the probability $y$ of a loan default. The goal is to learn the relationship between financial history and repayment reliability.
@@ -25,7 +27,9 @@ Every ML algorithm consists of three fundamental components: **Data**, **Model**
 
 ### A. The Model (Hypothesis)
 The model $h(\mathbf{x}; \theta)$ is a mathematical function parameterized by $\theta$. A common example is the **Linear Model**:
+<div class="formula-box">
 $$h(\mathbf{x}; \mathbf{w}, b) = \mathbf{w}^T \mathbf{x} + b$$
+</div>
 Where:
 - $\mathbf{w} \in \mathbb{R}^d$ is the **Weight Vector** (representing feature importance).
 - $b \in \mathbb{R}$ is the **Bias** (intercept).
@@ -41,7 +45,9 @@ The loss function measures the discrepancy between the true label $y$ and the pr
 
 ### C. Optimization (Empirical Risk Minimization)
 The goal is to find parameters $\theta^*$ that minimize the **Empirical Risk** (average loss over the training set):
+<div class="formula-box">
 $$\theta^* = \arg\min_{\theta} \frac{1}{n} \sum_{i=1}^n L(y^{(i)}, h(\mathbf{x}^{(i)}; \theta))$$
+</div>
 
 ---
 
@@ -85,7 +91,9 @@ Let $\mathbf{X} \in \mathbb{R}^{n \times d}$ be the feature matrix, $\mathbf{y} 
 The prediction vector is $\hat{\mathbf{y}} = \mathbf{X}\mathbf{w}$.
 The error vector is $\mathbf{e} = \mathbf{y} - \mathbf{X}\mathbf{w}$.
 The MSE is:
+<div class="formula-box">
 $$J(\mathbf{w}) = \frac{1}{n} \|\mathbf{y} - \mathbf{X}\mathbf{w}\|_2^2 = \frac{1}{n} (\mathbf{y} - \mathbf{X}\mathbf{w})^T (\mathbf{y} - \mathbf{X}\mathbf{w})$$
+</div>
 
 ---
 
@@ -93,16 +101,20 @@ $$J(\mathbf{w}) = \frac{1}{n} \|\mathbf{y} - \mathbf{X}\mathbf{w}\|_2^2 = \frac{
 
 ### The Bias-Variance Tradeoff
 Total Error can be decomposed into:
+<div class="formula-box">
 $$\text{Total Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Noise}$$
+</div>
 
 - **High Bias (Underfitting):** Model is too simple to capture the underlying trend.
 - **High Variance (Overfitting):** Model captures noise in the training data, failing to generalize to the test set.
 
 ### Structural Risk Minimization (Regularization)
 To prevent overfitting, we add a penalty term $R(\theta)$ to the loss function:
+<div class="formula-box">
 $$J(\theta) = \frac{1}{n} \sum L(y, h(\mathbf{x})) + \lambda R(\theta)$$
-- **$L_2$ Regularization (Ridge):** $R(\mathbf{w}) = \|\mathbf{w}\|_2^2$
-- **$L_1$ Regularization (Lasso):** $R(\mathbf{w}) = \|\mathbf{w}\|_1$
+</div>
+- **$L_2$ Regularization (Ridge):** <div class="formula-box">$R(\mathbf{w}) = \|\mathbf{w}\|_2^2$</div>
+- **$L_1$ Regularization (Lasso):** <div class="formula-box">$R(\mathbf{w}) = \|\mathbf{w}\|_1$</div>
 
 ---
 
@@ -117,4 +129,6 @@ $$J(\theta) = \frac{1}{n} \sum L(y, h(\mathbf{x})) + \lambda R(\theta)$$
    - $\nabla_{\mathbf{w}} (-2\mathbf{w}^T\mathbf{X}^T\mathbf{y}) = -2\mathbf{X}^T\mathbf{y}$
    - $\nabla_{\mathbf{w}} (\mathbf{w}^T\mathbf{X}^T\mathbf{X}\mathbf{w}) = 2\mathbf{X}^T\mathbf{X}\mathbf{w}$
 3. Combine: $\nabla_{\mathbf{w}} J(\mathbf{w}) = \frac{1}{2} (-2\mathbf{X}^T\mathbf{y} + 2\mathbf{X}^T\mathbf{X}\mathbf{w}) = -\mathbf{X}^T\mathbf{y} + \mathbf{X}^T\mathbf{X}\mathbf{w}$.
-4. Factorize: $\nabla_{\mathbf{w}} J(\mathbf{w}) = -\mathbf{X}^T(\mathbf{y} - \mathbf{X}\mathbf{w})$. (Q.E.D.)
+<div class="formula-box">
+$$\nabla_{\mathbf{w}} J(\mathbf{w}) = -\mathbf{X}^T(\mathbf{y} - \mathbf{X}\mathbf{w})$$
+</div>

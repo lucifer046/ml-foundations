@@ -10,12 +10,16 @@ To find a local minimum of a smooth function $f(\mathbf{x})$, we look at its der
 
 ### First-Order Necessary Condition (FONC)
 If $\mathbf{x}^*$ is a local minimum, then the gradient at that point must be zero:
+<div class="formula-box">
 $$\nabla f(\mathbf{x}^*) = \mathbf{0}$$
+</div>
 Points where $\nabla f = \mathbf{0}$ are called **Stationary Points** (includes minima, maxima, and saddle points).
 
 ### Second-Order Sufficient Condition (SOSC)
 A stationary point $\mathbf{x}^*$ is a local minimum if the Hessian matrix $\mathbf{H}(\mathbf{x}^*)$ is **Positive Definite**:
+<div class="formula-box">
 $$\mathbf{H}(\mathbf{x}^*) \succ 0$$
+</div>
 (i.e., all eigenvalues of $\mathbf{H}$ are positive).
 
 ---
@@ -25,7 +29,9 @@ $$\mathbf{H}(\mathbf{x}^*) \succ 0$$
 Gradient Descent is an iterative algorithm used to find the minimum of a function by taking steps proportional to the negative of the gradient.
 
 ### The Update Rule
+<div class="formula-box">
 $$\mathbf{x}_{k+1} = \mathbf{x}_k - \alpha \nabla f(\mathbf{x}_k)$$
+</div>
 Where:
 - $\alpha > 0$ is the **Learning Rate** (Step Size).
 - $-\nabla f$ is the direction of **Steepest Descent**.

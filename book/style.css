@@ -1188,3 +1188,15 @@ kbd {
         flex-direction: column;
     }
 }
+
+/* Formula Boxes */
+.formula-box {
+    background: rgba(15, 23, 42, 0.03);
+    border-left: 4px solid var(--accent-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    display: block;
+    box-shadow: var(--shadow-premium);
+    overflow-x: auto;
+}

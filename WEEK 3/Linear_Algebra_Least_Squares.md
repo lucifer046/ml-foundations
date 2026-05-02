@@ -11,7 +11,9 @@ A system of linear equations can be represented compactly as a matrix multiplica
 ### Perspectives on $\mathbf{A}\mathbf{x} = \mathbf{b}$
 1.  **Row Picture:** Each equation represents a hyperplane. The solution $\mathbf{x}$ is the intersection of all hyperplanes.
 2.  **Column Picture:** $\mathbf{b}$ is a linear combination of the columns of $\mathbf{A}$.
-    $$\mathbf{b} = x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \dots + x_n \mathbf{a}_n$$
+    <div class="formula-box">
+$$\mathbf{b} = x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \dots + x_n \mathbf{a}_n$$
+</div>
 
 ### Solving via Gaussian Elimination
 Gaussian elimination transforms $\mathbf{A}$ into an Upper Triangular matrix (U) or Reduced Row Echelon Form (RREF).
@@ -30,7 +32,9 @@ For any matrix $\mathbf{A} \in \mathbb{R}^{m \times n}$:
 - **Left Null Space $N(\mathbf{A}^T)$:** The set of all vectors $\mathbf{y}$ such that $\mathbf{A}^T \mathbf{y} = \mathbf{0}$.
 
 **Rank-Nullity Theorem:**
+<div class="formula-box">
 $$\text{rank}(\mathbf{A}) + \text{nullity}(\mathbf{A}) = n$$
+</div>
 
 ---
 
@@ -44,8 +48,13 @@ When a system $\mathbf{A}\mathbf{x} = \mathbf{b}$ has no solution (i.e., $\mathb
 
 **The Projection Matrix ($\mathbf{P}$):**
 If the columns of $\mathbf{A}$ are linearly independent, the projection of $\mathbf{b}$ onto $C(\mathbf{A})$ is:
+<div class="formula-box">
 $$\mathbf{p} = \mathbf{A}(\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T\mathbf{b}$$
-Where $\mathbf{P} = \mathbf{A}(\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T$ is the projection matrix.
+</div>
+The projection matrix itself is defined as:
+<div class="formula-box">
+$$\mathbf{P} = \mathbf{A}(\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T$$
+</div>
 
 ---
 

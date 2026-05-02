@@ -10,7 +10,9 @@ A set $S \subseteq \mathbb{R}^n$ is **Convex** if the line segment connecting an
 
 ### Mathematical Definition
 For all $\mathbf{x}, \mathbf{y} \in S$ and all $\theta \in [0, 1]$:
+<div class="formula-box">
 $$\theta \mathbf{x} + (1-\theta) \mathbf{y} \in S$$
+</div>
 
 ### Common Convex Sets
 - **Hyperplanes:** $\{\mathbf{x} \mid \mathbf{a}^T \mathbf{x} = b\}$
@@ -25,21 +27,29 @@ $$\theta \mathbf{x} + (1-\theta) \mathbf{y} \in S$$
 A function $f: \mathbb{R}^n \to \mathbb{R}$ is **Convex** if its domain is a convex set and the line segment between any two points on the graph of the function lies above or on the graph.
 
 ### Jensen's Inequality
+<div class="formula-box">
 $$f(\theta \mathbf{x} + (1-\theta) \mathbf{y}) \leq \theta f(\mathbf{x}) + (1-\theta) f(\mathbf{y})$$
+</div>
 
 ### Conditions for Convexity
-1.  **First-Order Condition:** $f$ is convex iff $f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f(\mathbf{x})^T (\mathbf{y} - \mathbf{x})$ for all $\mathbf{x}, \mathbf{y}$. (The tangent line is a global under-estimator).
+1.  **First-Order Condition:** $f$ is convex iff <div class="formula-box">
+$f(\mathbf{y}) \geq f(\mathbf{x}) + \nabla f(\mathbf{x})^T (\mathbf{y} - \mathbf{x})$
+</div> for all $\mathbf{x}, \mathbf{y}$. (The tangent line is a global under-estimator).
 2.  **Second-Order Condition:** A twice-differentiable function is convex iff its Hessian is positive semi-definite (PSD) for all $\mathbf{x}$:
-    $$\nabla^2 f(\mathbf{x}) \succeq 0$$
+    <div class="formula-box">
+$$\nabla^2 f(\mathbf{x}) \succeq 0$$
+</div>
 
 ---
 
 ## 3. Convex Optimization Problems
 
 A convex optimization problem is one of the form:
+<div class="formula-box">
 $$\min f_0(\mathbf{x})$$
 $$\text{subject to } f_i(\mathbf{x}) \leq 0, \quad i=1, \dots, m$$
 $$\mathbf{a}_j^T \mathbf{x} = b_j, \quad j=1, \dots, p$$
+</div>
 Where $f_0, \dots, f_m$ are convex functions.
 
 ### Property of Global Optimality

@@ -53,11 +53,15 @@ In multivariable calculus, we organize derivatives into vectors and matrices to 
 
 ### The Gradient Vector ($\nabla f$)
 The gradient is a vector of all partial derivatives. It points in the direction of the steepest ascent.
+<div class="formula-box">
 $$\nabla f(\mathbf{x}) = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_d} \end{bmatrix}$$
+</div>
 
 ### The Hessian Matrix ($\mathbf{H}$)
 The Hessian is a square matrix of second-order partial derivatives, representing the curvature of the function.
+<div class="formula-box">
 $$\mathbf{H}_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}$$
+</div>
 For a 2D function:
 $$\mathbf{H} = \begin{bmatrix} \frac{\partial^2 f}{\partial x^2} & \frac{\partial^2 f}{\partial x \partial y} \\ \frac{\partial^2 f}{\partial y \partial x} & \frac{\partial^2 f}{\partial y^2} \end{bmatrix}$$
 
@@ -68,11 +72,15 @@ $$\mathbf{H} = \begin{bmatrix} \frac{\partial^2 f}{\partial x^2} & \frac{\partia
 Machine learning algorithms often approximate complex functions using Taylor polynomials.
 
 ### First-Order (Linear) Approximation
+<div class="formula-box">
 $$f(\mathbf{x} + \Delta\mathbf{x}) \approx f(\mathbf{x}) + \nabla f(\mathbf{x})^T \Delta\mathbf{x}$$
+</div>
 This is the basis for **Gradient Descent**, where we take a step $\Delta\mathbf{x}$ in the direction that decreases $f$ the most.
 
 ### Second-Order (Quadratic) Approximation
+<div class="formula-box">
 $$f(\mathbf{x} + \Delta\mathbf{x}) \approx f(\mathbf{x}) + \nabla f(\mathbf{x})^T \Delta\mathbf{x} + \frac{1}{2} \Delta\mathbf{x}^T \mathbf{H}(\mathbf{x}) \Delta\mathbf{x}$$
+</div>
 This is used in **Newton's Method** for optimization.
 
 ---
@@ -82,13 +90,17 @@ This is used in **Newton's Method** for optimization.
 A hyperplane is a subspace of one dimension less than its ambient space (e.g., a line in 2D, a plane in 3D).
 
 ### Equation of a Hyperplane
+<div class="formula-box">
 $$\mathbf{w}^T \mathbf{x} + b = 0$$
+</div>
 - $\mathbf{w}$ is the **Normal Vector** (perpendicular to the surface).
 - $b$ is the **Bias**.
 
 ### Distance from a Point to a Hyperplane
 The signed distance from a point $\mathbf{x}_0$ to the hyperplane defined by $(\mathbf{w}, b)$ is:
+<div class="formula-box">
 $$d = \frac{\mathbf{w}^T \mathbf{x}_0 + b}{\|\mathbf{w}\|_2}$$
+</div>
 
 ---
 
@@ -123,8 +135,10 @@ Find the critical points of $f(x, y) = x^2 - 4x + y^2 + 6y + 10$ and determine i
 **Solution:**
 Let $\mathbf{z} = \mathbf{W}\mathbf{x} + \mathbf{b}$. Then $\mathbf{h} = \sigma(\mathbf{z})$.
 By the chain rule for vectors:
+<div class="formula-box">
 $$\frac{\partial \mathbf{h}}{\partial \mathbf{x}} = \frac{\partial \mathbf{h}}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial \mathbf{x}}$$
+</div>
 1. $\frac{\partial \mathbf{z}}{\partial \mathbf{x}} = \mathbf{W}$.
 2. $\frac{\partial \mathbf{h}}{\partial \mathbf{z}}$ is a diagonal matrix because $\sigma$ is element-wise:
    $$\text{diag}(\sigma'(\mathbf{z})) = \begin{bmatrix} \sigma'(z_1) & 0 & \dots \\ 0 & \sigma'(z_2) & \dots \\ \vdots & \vdots & \ddots \end{bmatrix}$$
-3. Result: $\frac{\partial \mathbf{h}}{\partial \mathbf{x}} = \text{diag}(\sigma'(\mathbf{z})) \mathbf{W}$.
+3. Result: <div class="formula-box">$$\frac{\partial \mathbf{h}}{\partial \mathbf{x}} = \text{diag}(\sigma'(\mathbf{z})) \mathbf{W}$$</div>

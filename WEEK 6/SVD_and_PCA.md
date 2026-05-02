@@ -7,7 +7,9 @@ While diagonalization is limited to square matrices, Singular Value Decompositio
 ## 1. Singular Value Decomposition (SVD)
 
 Any matrix $\mathbf{A} \in \mathbb{R}^{m \times n}$ can be factored as:
+<div class="formula-box">
 $$\mathbf{A} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T$$
+</div>
 Where:
 - $\mathbf{U} \in \mathbb{R}^{m \times m}$ is an orthogonal matrix whose columns are the **Left Singular Vectors** (eigenvectors of $\mathbf{A}\mathbf{A}^T$).
 - $\mathbf{\Sigma} \in \mathbb{R}^{m \times n}$ is a rectangular diagonal matrix containing the **Singular Values** $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$.
@@ -15,7 +17,9 @@ Where:
 
 ### Relationship with Eigenvalues
 The singular values $\sigma_i$ are the square roots of the non-zero eigenvalues of $\mathbf{A}^T\mathbf{A}$:
+<div class="formula-box">
 $$\sigma_i = \sqrt{\lambda_i(\mathbf{A}^T\mathbf{A})}$$
+</div>
 
 ---
 
@@ -25,7 +29,9 @@ One of the most powerful applications of SVD is approximating a high-dimensional
 
 ### Eckart-Young-Mirsky Theorem
 The best rank-$k$ approximation of $\mathbf{A}$ (in terms of Frobenius or spectral norm) is obtained by keeping only the first $k$ singular values:
+<div class="formula-box">
 $$\mathbf{A}_k = \sum_{i=1}^k \sigma_i \mathbf{u}_i \mathbf{v}_i^T$$
+</div>
 This allows us to compress data while retaining the most significant features (variance).
 
 ---
@@ -36,7 +42,9 @@ PCA is a statistical procedure that uses an orthogonal transformation to convert
 
 ### The PCA Algorithm
 1.  **Center the Data:** Subtract the mean of each feature: $\tilde{\mathbf{X}} = \mathbf{X} - \bar{\mathbf{x}}$.
-2.  **Compute Covariance Matrix:** $\mathbf{S} = \frac{1}{n-1} \tilde{\mathbf{X}}^T \tilde{\mathbf{X}}$.
+2.  **Compute Covariance Matrix:** <div class="formula-box">
+$$\mathbf{S} = \frac{1}{n-1} \tilde{\mathbf{X}}^T \tilde{\mathbf{X}}$$
+</div>
 3.  **Compute Eigen-Decomposition:** Find eigenvectors $\mathbf{w}_i$ and eigenvalues $\lambda_i$ of $\mathbf{S}$.
 4.  **Project Data:** Transform original points into the new subspace: $\mathbf{Z} = \tilde{\mathbf{X}} \mathbf{W}_k$.
 

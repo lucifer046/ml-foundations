@@ -10,16 +10,22 @@ MLE is a method of estimating the parameters of a probability distribution by ma
 
 ### The Likelihood Function
 For i.i.d. data $X = \{x_1, \dots, x_n\}$, the likelihood is:
+<div class="formula-box">
 $$L(\theta) = P(X \mid \theta) = \prod_{i=1}^n P(x_i \mid \theta)$$
+</div>
 In practice, we maximize the **Log-Likelihood** $\ell(\theta) = \log L(\theta)$ because it transforms products into sums and is computationally more stable:
+<div class="formula-box">
 $$\hat{\theta}_{MLE} = \arg\max_{\theta} \sum_{i=1}^n \log P(x_i \mid \theta)$$
+</div>
 
 ---
 
 ## 2. Maximum A Posteriori (MAP) Estimation
 
 MAP estimation incorporates a **Prior Distribution** $p(\theta)$ over the parameters, allowing us to include domain knowledge or perform regularization.
+<div class="formula-box">
 $$\hat{\theta}_{MAP} = \arg\max_{\theta} P(\theta \mid X) = \arg\max_{\theta} \left[ \sum \log P(x_i \mid \theta) + \log P(\theta) \right]$$
+</div>
 - If the prior is uniform, MAP is equivalent to MLE.
 - If the prior is Gaussian, MAP is equivalent to **Ridge Regression** ($L_2$ regularization).
 
@@ -31,9 +37,13 @@ The EM algorithm is used to find MLE estimates when the model depends on unobser
 
 ### The Two Steps
 1.  **E-Step (Expectation):** Calculate the expected value of the log-likelihood function, with respect to the conditional distribution of $Z$ given $X$ and the current estimate of the parameters $\theta^{(t)}$:
-    $$Q(\theta \mid \theta^{(t)}) = E_{Z \mid X, \theta^{(t)}} [\log P(X, Z \mid \theta)]$$
+    <div class="formula-box">
+$$Q(\theta \mid \theta^{(t)}) = E_{Z \mid X, \theta^{(t)}} [\log P(X, Z \mid \theta)]$$
+</div>
 2.  **M-Step (Maximization):** Find the parameters $\theta$ that maximize this $Q$ function:
-    $$\theta^{(t+1)} = \arg\max_{\theta} Q(\theta \mid \theta^{(t)})$$
+    <div class="formula-box">
+$$\theta^{(t+1)} = \arg\max_{\theta} Q(\theta \mid \theta^{(t)})$$
+</div>
 
 ---
 
@@ -72,5 +82,7 @@ Find the MLE for $\mu$ given $x \sim \mathcal{N}(\mu, \sigma^2)$.
 Using Jensen's Inequality, we can write the log-likelihood as:
 $$\log P(X \mid \theta) = \log \sum_Z P(X, Z \mid \theta) = \log \sum_Z q(Z) \frac{P(X, Z \mid \theta)}{q(Z)}$$
 Where $q(Z)$ is any distribution. By Jensen's:
+<div class="formula-box">
 $$\log P(X \mid \theta) \geq \sum_Z q(Z) \log \frac{P(X, Z \mid \theta)}{q(Z)} = \mathcal{L}(q, \theta)$$
+</div>
 The E-step chooses $q(Z) = P(Z \mid X, \theta^{(t)})$ to make the bound tight (equality). The M-step then increases $\theta$ to maximize $\mathcal{L}(q, \theta)$. Since the bound was tight at $\theta^{(t)}$, any increase in the bound $\mathcal{L}$ must also increase the actual likelihood $P(X \mid \theta)$. (Q.E.D.)

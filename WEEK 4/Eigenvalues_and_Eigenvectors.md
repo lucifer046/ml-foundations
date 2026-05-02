@@ -7,7 +7,9 @@ Spectral theory deals with the behavior of linear transformations by identifying
 ## 1. The Eigenvalue Equation
 
 For a square matrix $\mathbf{A} \in \mathbb{R}^{n \times n}$, a non-zero vector $\mathbf{v}$ is an **Eigenvector** if:
+<div class="formula-box">
 $$\mathbf{A}\mathbf{v} = \lambda \mathbf{v}$$
+</div>
 Where:
 - $\lambda$ is a scalar called the **Eigenvalue**.
 - $\mathbf{v}$ is the direction that is only scaled (not rotated) by $\mathbf{A}$.
@@ -23,7 +25,9 @@ To find eigenvalues and eigenvectors, we follow two primary steps:
 
 ### Step 1: Solve the Characteristic Equation
 The equation $\mathbf{A}\mathbf{v} = \lambda \mathbf{v}$ can be rewritten as $(\mathbf{A} - \lambda \mathbf{I})\mathbf{v} = \mathbf{0}$. For a non-zero solution to exist, the matrix $(\mathbf{A} - \lambda \mathbf{I})$ must be singular:
+<div class="formula-box">
 $$\det(\mathbf{A} - \lambda \mathbf{I}) = 0$$
+</div>
 This yields a polynomial in $\lambda$ of degree $n$.
 
 ### Step 2: Solve for Null Space
@@ -35,14 +39,18 @@ $$(\mathbf{A} - \lambda_i \mathbf{I})\mathbf{v} = \mathbf{0}$$
 ## 3. Matrix Diagonalization
 
 If a matrix $\mathbf{A}$ has $n$ linearly independent eigenvectors, it can be decomposed as:
+<div class="formula-box">
 $$\mathbf{A} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^{-1}$$
+</div>
 Where:
 - $\mathbf{V}$ is a matrix whose columns are the eigenvectors.
 - $\mathbf{\Lambda}$ is a diagonal matrix of eigenvalues.
 
 ### Application: Computing Matrix Powers
 Diagonalization allows for efficient calculation of $\mathbf{A}^k$:
+<div class="formula-box">
 $$\mathbf{A}^k = \mathbf{V} \mathbf{\Lambda}^k \mathbf{V}^{-1}$$
+</div>
 Since $\mathbf{\Lambda}^k$ simply involves raising the diagonal elements to the power of $k$.
 
 ---
@@ -74,7 +82,9 @@ $\begin{bmatrix} 4-2 & 1 \\ 2 & 3-2 \end{bmatrix} \mathbf{v} = \begin{bmatrix} 2
 ## 6. Advanced Question: Trace and Determinant
 
 **Problem:** Prove that for any $n \times n$ matrix $\mathbf{A}$, the sum of the eigenvalues equals the trace, and the product of the eigenvalues equals the determinant.
+<div class="formula-box">
 $$\sum \lambda_i = \text{tr}(\mathbf{A}), \quad \prod \lambda_i = \det(\mathbf{A})$$
+</div>
 
 **Solution:**
 Consider the characteristic polynomial $P(\lambda) = \det(\mathbf{A} - \lambda \mathbf{I})$.

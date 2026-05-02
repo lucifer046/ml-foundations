@@ -6,7 +6,9 @@ Symmetric matrices play a central role in machine learning, particularly in opti
 
 ## 1. Properties of Symmetric Matrices
 
-A matrix $\mathbf{A} \in \mathbb{R}^{n \times n}$ is **Symmetric** if $\mathbf{A} = \mathbf{A}^T$.
+A matrix $\mathbf{A} \in \mathbb{R}^{n \times n}$ is **Symmetric** if <div class="formula-box">
+$$\mathbf{A} = \mathbf{A}^T$$
+</div>.
 
 ### Fundamental Properties
 1.  **Real Eigenvalues:** All eigenvalues of a real symmetric matrix are real ($\lambda_i \in \mathbb{R}$).
@@ -18,7 +20,9 @@ A matrix $\mathbf{A} \in \mathbb{R}^{n \times n}$ is **Symmetric** if $\mathbf{A
 ## 2. Spectral Decomposition
 
 The **Spectral Theorem** states that any symmetric matrix can be written as a weighted sum of outer products of its eigenvectors:
+<div class="formula-box">
 $$\mathbf{A} = \sum_{i=1}^n \lambda_i \mathbf{q}_i \mathbf{q}_i^T$$
+</div>
 Where $\mathbf{q}_i$ are the orthonormal eigenvectors.
 
 ### Interpretation
@@ -29,7 +33,9 @@ The matrix $\mathbf{A}$ acts by scaling space along the orthogonal directions de
 ## 3. Quadratic Forms and Definiteness
 
 A quadratic form is a scalar-valued function:
+<div class="formula-box">
 $$f(\mathbf{x}) = \mathbf{x}^T \mathbf{A} \mathbf{x} = \sum_{i,j} A_{ij} x_i x_j$$
+</div>
 
 ### Classification of Symmetric Matrices
 | Term | Condition for all $\mathbf{x} \neq \mathbf{0}$ | Eigenvalue Requirement |

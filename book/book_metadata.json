@@ -103,23 +103,23 @@
         },
         {
             "id": "10",
-            "title": "WEEK 10: Probabilistic Models",
+            "title": "WEEK 10: Optimization Theory and Duality",
             "topics": [
                 {
                     "id": "01",
-                    "title": "Probability & Bayes' Theorem",
-                    "file": "WEEK 10/Probabilistic_Models.md"
+                    "title": "Optimization Theory & Duality",
+                    "file": "WEEK 10/Optimization_Theory_Duality.md"
                 }
             ]
         },
         {
             "id": "11",
-            "title": "WEEK 11: Exponential Family",
+            "title": "WEEK 11: Probabilistic Models & Exponential Family",
             "topics": [
                 {
                     "id": "01",
-                    "title": "Exponential Family of Distributions",
-                    "file": "WEEK 11/Exponential_Family.md"
+                    "title": "Probabilistic Models and Exponential Family",
+                    "file": "WEEK 11/Probabilistic_Models_and_Exponential_Family.md"
                 }
             ]
         },
