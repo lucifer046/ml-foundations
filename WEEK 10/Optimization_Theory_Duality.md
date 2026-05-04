@@ -6,6 +6,33 @@
 
 <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 1.25rem;">
 <div>
+<a href="https://youtu.be/WXhCy_ecSfg" target="_blank" style="color: #5b21b6; text-decoration: none; font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 0.6rem; transition: all 0.2s ease;">
+Duality and Lagrangian - Part 1 (Hindi)
+<i data-lucide="external-link" style="width: 18px; height: 18px; opacity: 0.7;"></i>
+</a>
+<p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: #7c3aed; opacity: 0.8; font-weight: 500;">
+Foundational concepts of Lagrangian theory and duality in optimization.
+</p>
+</div>
+<div>
+<a href="https://youtu.be/VGJiLt0XRlI" target="_blank" style="color: #5b21b6; text-decoration: none; font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 0.6rem; transition: all 0.2s ease;">
+Duality and Lagrangian - Part 2 (Hindi)
+<i data-lucide="external-link" style="width: 18px; height: 18px; opacity: 0.7;"></i>
+</a>
+<p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: #7c3aed; opacity: 0.8; font-weight: 500;">
+Matrix theory and formal derivations of the dual problem.
+</p>
+</div>
+<div>
+<a href="https://youtu.be/0rPndrfWU9Y" target="_blank" style="color: #5b21b6; text-decoration: none; font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 0.6rem; transition: all 0.2s ease;">
+Duality and Lagrangian - Part 3 (Hindi)
+<i data-lucide="external-link" style="width: 18px; height: 18px; opacity: 0.7;"></i>
+</a>
+<p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: #7c3aed; opacity: 0.8; font-weight: 500;">
+Advanced matrix concepts and solving the Lagrangian dual.
+</p>
+</div>
+<div>
 <a href="https://youtu.be/H0sBZdjuego" target="_blank" style="color: #5b21b6; text-decoration: none; font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 0.6rem; transition: all 0.2s ease;">
 Duality & Primal-Dual Conversion (Hindi)
 <i data-lucide="external-link" style="width: 18px; height: 18px; opacity: 0.7;"></i>
