@@ -6,17 +6,32 @@
 
 ## 📖 Overview
 
-This handbook is designed as a sophisticated single-page application (SPA) to provide a seamless, textbook-quality learning experience. It bridges the gap between abstract mathematical theory and practical machine learning implementation, covering topics from Multivariable Calculus to Spectral Theory and Dimensionality Reduction.
+This handbook is designed as a sophisticated single-page application (SPA) to provide a seamless, textbook-quality learning experience. It bridges the gap between abstract mathematical theory and practical machine learning implementation, following a **Cyber-Minimalist** aesthetic that prioritizes content density and readability.
+
+The project standardizes complex theoretical concepts across 12 intensive modules, ensuring that every derivation—from Multivariable Calculus to Spectral Theory—is presented with maximum clarity.
 
 ## ✨ Key Features
 
-- **Safe-Injection Rendering Pipeline**: A robust DOM-based processing engine that ensures complex LaTeX formulas and SVG visualizations render with zero corruption or backslash-stripping.
-- **Interactive Technical Graphs**: Hand-crafted SVG visualizations for core concepts such as gradient descent, least squares regression, and derivatives.
-- **High-Density Cyber-Minimalist UI**: An elegant, distraction-free interface optimized for reading technical content. Features a refined two-line sidebar navigation system for better topical hierarchy.
-- **X-Ray Variable Tooltips**: Deep-dive into mathematical terms by hovering over variables to see their formal definitions.
+- **Cyber-Minimalist Design System**: A premium, distraction-free interface built on a Slate-based color palette with glassmorphism effects and fluid typography.
+- **Standardized Formula Boxes**: Every critical mathematical theorem and identity is encased in high-fidelity "Formula Boxes" for consistent visual emphasis.
+- **Safe-Injection Rendering**: A custom DOM-based pipeline that ensures LaTeX formulas and SVG visualizations render without backslash-stripping or corruption.
+- **Technical Video Integration**: Context-aware links to recommended lectures (including high-quality Hindi-language resources) for deeper conceptual dives.
+- **Interactive Technical Graphs**: Hand-optimized SVG visualizations for concepts like Gradient Descent convergence, Sigmoid functions, and Normal distributions.
 - **Global Command Palette**: Instant, fuzzy-search navigation across the entire curriculum using `Ctrl + K`.
 - **Keyboard-First Navigation**: Seamlessly toggle between topics using the `←` and `→` arrow keys.
-- **Dual-Phase Scroll Logic**: Automated scroll-to-top resets ensure a consistent starting point for every new topic.
+- **Dual-Phase Scroll Logic**: Automated scroll resets ensure a consistent starting point for every new topic.
+
+---
+
+## 📅 Curriculum Scope
+
+The handbook covers a comprehensive 12-week foundation:
+- **Week 1-2**: Foundations of ML & Advanced Calculus
+- **Week 3-5**: Linear Algebra (Least Squares, Eigenvalues, Symmetric Matrices)
+- **Week 6**: SVD and Principal Component Analysis (PCA)
+- **Week 7-8**: Unconstrained & Convex Optimization
+- **Week 9-10**: Constrained Optimization (Lagrange, KKT) & Duality Theory
+- **Week 11-12**: Probabilistic Models, Exponential Family & EM Algorithm
 
 ---
 
@@ -26,17 +41,16 @@ This handbook is designed as a sophisticated single-page application (SPA) to pr
 - **Mathematics**: [MathJax 3.0](https://www.mathjax.org/) (Configured for SVG output)
 - **Content Engine**: [marked.js](https://marked.js.org/) with custom "Safe-Injection" extensions
 - **Syntax Highlighting**: [Prism.js](https://prismjs.com/)
-- **Visuals**: Hand-optimized SVG for lightweight, high-contrast technical diagrams
-- **Icons**: [Lucide](https://lucide.dev/)
+- **Icons**: [Lucide](https://lucide.dev/) for crisp, scalable UI elements
 
 ---
 
 ## 🚀 Getting Started
 
-No build tools, compilers, or local servers are required. The handbook is a self-contained client-side application.
+The handbook is a self-contained client-side application. No build tools, compilers, or local servers are required (though a Live Server extension is recommended for the best experience).
 
 1. Clone this repository.
-2. Open `index.html` in any modern web browser (Chrome, Firefox, or Safari recommended).
+2. Open `index.html` in any modern web browser.
 
 ### Keyboard Shortcuts
 - `←` / `→`: Next/Previous Topic
@@ -54,7 +68,7 @@ No build tools, compilers, or local servers are required. The handbook is a self
 │   ├── style.css       # Design System (Cyber-Minimalist Theme)
 │   ├── book_data.js    # Compiled technical curriculum (Knowledge Base)
 │   └── logo.png        # Handbook visual identity
-├── WEEK 1 - 12/        # Source curriculum data and documentation
+├── WEEK 1 - 12/        # Source curriculum data (Raw Markdown/Python)
 └── README.md           # Documentation
 ```
 
@@ -69,3 +83,4 @@ No build tools, compilers, or local servers are required. The handbook is a self
 ## 📄 License
 
 This project is created for educational purposes. All rights reserved.
+
