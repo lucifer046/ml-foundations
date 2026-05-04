@@ -26,6 +26,7 @@ The project standardizes complex theoretical concepts across 12 intensive module
 ## 📅 Curriculum Scope
 
 The handbook covers a comprehensive 12-week foundation:
+
 - **Week 1-2**: Foundations of ML & Advanced Calculus
 - **Week 3-5**: Linear Algebra (Least Squares, Eigenvalues, Symmetric Matrices)
 - **Week 6**: SVD and Principal Component Analysis (PCA)
@@ -53,6 +54,7 @@ The handbook is a self-contained client-side application. No build tools, compil
 2. Open `index.html` in any modern web browser.
 
 ### Keyboard Shortcuts
+
 - `←` / `→`: Next/Previous Topic
 - `Ctrl + K`: Open Command Palette / Search
 - `Esc`: Close Overlays / Reset Search
@@ -76,11 +78,10 @@ The handbook is a self-contained client-side application. No build tools, compil
 
 ## ✍️ Author
 
-**Divya Prakash** - *Primary Developer & Content Architect*
+**Divya Prakash** - _Primary Developer & Content Architect_
 
 ---
 
 ## 📄 License
 
 This project is created for educational purposes. All rights reserved.
-

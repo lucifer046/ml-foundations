@@ -19,8 +19,6 @@ def build_book_data():
         for topic in cat['topics']:
             topic_id = topic['id']
             md_path = topic['file']
-            code_path = md_path.replace('.md', '.py')
-
             theory_content = ""
             if os.path.exists(md_path):
                 with open(md_path, 'r', encoding='utf-8') as f:
@@ -28,19 +26,11 @@ def build_book_data():
             else:
                 print(f"Warning: MD file {md_path} not found.")
 
-            code_content = ""
-            if os.path.exists(code_path):
-                with open(code_path, 'r', encoding='utf-8') as f:
-                    code_content = f.read()
-            else:
-                code_content = f"# No implementation file found for {topic['title']}\n# Path: {code_path}"
-
             key = f"{cat_id}.{topic_id}"
             source_data[key] = {
                 "title": topic['title'],
                 "category": cat_title,
-                "theory": theory_content,
-                "code": code_content
+                "theory": theory_content
             }
 
     js_content = f"const SOURCE_DATA = {json.dumps(source_data, indent=4)};\n"

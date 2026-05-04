@@ -2,13 +2,11 @@
 //  Features: Command Palette, Keyboard Nav, X-Ray Tooltips, Resizable Layout
 
 let currentTopicId = null;
-let isResizing = false;
 let currentZoom = 0.95;
 
 // ---- DOM Elements ----
 const theoryPane = document.getElementById('theory-pane');
 const theoryContentArea = document.getElementById('theory-content-area');
-const codeContainer = document.getElementById('code-container');
 const bookLayout = document.getElementById('book-layout');
 const sidebarOverlay = document.getElementById('sidebar-overlay');
 const menuContent = document.getElementById('menu-content');

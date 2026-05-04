@@ -1,3 +1,32 @@
+<div class="callout callout-important" style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border: 1px solid #ddd6fe; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1); margin-bottom: 3rem; border-left: 5px solid #8b5cf6;">
+<div class="callout-title" style="color: #6d28d9; font-size: 0.8rem; letter-spacing: 0.1em; font-weight: 900; display: flex; align-items: center; gap: 0.6rem;">
+<i data-lucide="video" style="width: 16px; height: 16px;"></i>
+<span>RECOMMENDED LECTURES (HINDI)</span>
+</div>
+
+<div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 1.25rem;">
+<div>
+<a href="https://youtu.be/H0sBZdjuego" target="_blank" style="color: #5b21b6; text-decoration: none; font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 0.6rem; transition: all 0.2s ease;">
+Duality & Primal-Dual Conversion (Hindi)
+<i data-lucide="external-link" style="width: 18px; height: 18px; opacity: 0.7;"></i>
+</a>
+<p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: #7c3aed; opacity: 0.8; font-weight: 500;">
+A deep dive into duality theory and the step-by-step process of converting primal problems to dual forms.
+</p>
+</div>
+<div>
+<a href="https://youtu.be/zKyuBNPKjYY" target="_blank" style="color: #5b21b6; text-decoration: none; font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 0.6rem; transition: all 0.2s ease;">
+KKT Conditions - Detailed Explanation (Hindi)
+<i data-lucide="external-link" style="width: 18px; height: 18px; opacity: 0.7;"></i>
+</a>
+<p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: #7c3aed; opacity: 0.8; font-weight: 500;">
+Understanding Karush-Kuhn-Tucker conditions for inequality constraints.
+</p>
+</div>
+</div>
+
+</div>
+
 # WEEK 10: Optimization Theory, Convexity, and Duality
 
 This module explores the geometry of feasible regions, formal proofs of convexity properties, and the **Duality Theory** framework — with full KKT worked examples.
@@ -155,7 +184,80 @@ Complementary slackness means: either the constraint is inactive ($g < 0$) and $
 
 ---
 
-## 6. Worked Examples
+## 6. Matrix Concepts for Linear Regression
+
+Before solving the practice problem, we need to understand the matrix operations that power the Normal Equation.
+
+### 6.1 Matrix Transpose
+The transpose $A^T$ of an $m \times n$ matrix $A$ is the $n \times m$ matrix formed by swapping rows and columns.
+<div class="formula-box">
+$$[A^T]_{ij} = [A]_{ji}$$
+</div>
+
+### 6.2 Matrix Multiplication
+To multiply $A$ ($m \times k$) by $B$ ($k \times n$), the inner dimensions must match. Result shape: $m \times n$.
+<div class="formula-box">
+$$[AB]_{ij} = \sum_{l=1}^{k} A_{il} \cdot B_{lj}$$
+</div>
+
+### 6.3 Determinant and Inverse (2x2)
+For $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, the determinant is $\det(A) = ad - bc$.
+The inverse is:
+<div class="formula-box">
+$$A^{-1} = \frac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$$
+</div>
+
+### 6.4 Deriving the Normal Equation
+The goal is to minimize $L(w) = \|Xw - y\|^2$. The optimal solution satisfies:
+<div class="formula-box">
+$$w^* = (X^TX)^{-1}X^Ty$$
+</div>
+
+---
+
+## 7. Practice Problem: Detailed Solution
+
+> **Problem:** Find the optimal $w^*$ for the following dataset:
+> | $X$ | $y$ |
+> |---|---|
+> | $[1, 0]$ | $1.5$ |
+> | $[2, 1]$ | $2.9$ |
+> | $[3, 2]$ | $3.4$ |
+> | $[4, 2]$ | $3.8$ |
+> | $[5, 3]$ | $5.3$ |
+
+### Step 1: Matrix Setup
+<div class="formula-box">
+$$X = \begin{bmatrix} 1 & 0 \\ 2 & 1 \\ 3 & 2 \\ 4 & 2 \\ 5 & 3 \end{bmatrix}, \quad y = \begin{bmatrix} 1.5 \\ 2.9 \\ 3.4 \\ 3.8 \\ 5.3 \end{bmatrix}$$
+</div>
+
+### Step 2: Compute $X^T X$
+<div class="formula-box">
+$$X^T X = \begin{bmatrix} 1 & 2 & 3 & 4 & 5 \\ 0 & 1 & 2 & 2 & 3 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 2 & 1 \\ 3 & 2 \\ 4 & 2 \\ 5 & 3 \end{bmatrix} = \begin{bmatrix} 55 & 31 \\ 31 & 18 \end{bmatrix}$$
+</div>
+
+### Step 3: Compute $X^T y$
+<div class="formula-box">
+$$X^T y = \begin{bmatrix} 1 & 2 & 3 & 4 & 5 \\ 0 & 1 & 2 & 2 & 3 \end{bmatrix} \begin{bmatrix} 1.5 \\ 2.9 \\ 3.4 \\ 3.8 \\ 5.3 \end{bmatrix} = \begin{bmatrix} 59.2 \\ 33.2 \end{bmatrix}$$
+</div>
+
+### Step 4: Compute $(X^T X)^{-1}$
+$\det(X^TX) = (55)(18) - (31)^2 = 29$.
+<div class="formula-box">
+$$(X^T X)^{-1} = \frac{1}{29} \begin{bmatrix} 18 & -31 \\ -31 & 55 \end{bmatrix}$$
+</div>
+
+### Step 5: Final Solution for $w^*$
+<div class="formula-box">
+$$w^* = (X^T X)^{-1} X^T y = \frac{1}{29} \begin{bmatrix} 18 & -31 \\ -31 & 55 \end{bmatrix} \begin{bmatrix} 59.2 \\ 33.2 \end{bmatrix} = \begin{bmatrix} 1.255 \\ -0.317 \end{bmatrix}$$
+</div>
+
+> [!IMPORTANT]
+> **Final Answer:** The optimal weight vector is $w^* \approx \begin{bmatrix} 1.255 \\ -0.317 \end{bmatrix}$.
+
+---
+
+## 8. Worked Examples
 
 ### Example 1: Minimize $f(x) = x^2$ subject to $g(x) \leq 0$
 **Problem:** $\min_x x^2$ subject to $(x-4)(x-2) \leq 0$

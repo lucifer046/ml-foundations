@@ -13,15 +13,6 @@
                 A detailed explanation of Lagrange Multipliers and Gradient Dynamics.
             </p>
         </div>
-        <div>
-            <a href="https://youtu.be/zKyuBNPKjYY" target="_blank" style="color: #5b21b6; text-decoration: none; font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 0.6rem; transition: all 0.2s ease;">
-                KKT Conditions - Detailed Explanation (Hindi)
-                <i data-lucide="external-link" style="width: 18px; height: 18px; opacity: 0.7;"></i>
-            </a>
-            <p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: #7c3aed; opacity: 0.8; font-weight: 500;">
-                Understanding Karush-Kuhn-Tucker conditions for inequality constraints.
-            </p>
-        </div>
     </div>
 </div>
 
@@ -111,17 +102,10 @@ $$\mathcal{L}(x, y, \lambda) = f(x, y) + \lambda g(x, y)$$
 
 ---
 
-## 5. Inequality Constraints: KKT Conditions
-
-For inequality constraints ($h(\mathbf{x}) \leq 0$), we use the **Karush-Kuhn-Tucker (KKT)** conditions:
-1.  **Stationarity:** $\nabla f(\mathbf{x}) + \sum \mu_j \nabla h_j(\mathbf{x}) = \mathbf{0}$
-2.  **Primal Feasibility:** $h_j(\mathbf{x}) \leq 0$
-3.  **Dual Feasibility:** $\mu_j \geq 0$
-4.  **Complementary Slackness:** $\mu_j h_j(\mathbf{x}) = 0$
-
 ---
 
-## 6. Higher Dimensions and Second-Order Analysis
+
+## 5. Higher Dimensions and Second-Order Analysis
 
 ### The Hessian Test
 <div class="formula-box">
@@ -137,7 +121,7 @@ A problem is **convex** if the feasible set is convex and $f$ is convex. This gu
 
 ---
 
-## 7. Convex Sets, Hyperplanes, and Halfspaces
+## 6. Convex Sets, Hyperplanes, and Halfspaces
 
 ### Hyperplanes
 In $\mathbb{R}^n$, a **hyperplane** is the set $\{x : w \cdot x + b = 0\}$.
@@ -167,7 +151,7 @@ The convex hull of three non-collinear points is the filled triangle; of four co
 
 ---
 
-## 8. Machine Learning Application: Logistic Regression
+## 7. Machine Learning Application: Logistic Regression
 
 Logistic regression minimizes the **Binary Cross-Entropy (BCE) Loss** using the sigmoid function $\sigma(z) = \frac{1}{1+e^{-z}}$.
 
@@ -202,7 +186,7 @@ This function is **convex**, allowing global optimization via gradient descent.
 
 ---
 
-## 9. Guided Problem Sets
+## 8. Guided Problem Sets
 
 ### Problem Set A: Lagrange Multipliers — 2D
 **Goal:** Minimize $f(x, y) = x^2 + y^2$ subject to $x + y = 2$.
