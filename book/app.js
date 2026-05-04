@@ -370,7 +370,7 @@ function renderTheory(data) {
         return `<div class="callout callout-${type.toLowerCase()}">
             <div class="callout-title"><i data-lucide="${iconMap[type]}"></i>${type}</div>
             <div>${parseMarkdown(cleaned)}</div>
-        </div>`;
+        </div>\n`;
     });
 
     // 4. Parse Markdown
