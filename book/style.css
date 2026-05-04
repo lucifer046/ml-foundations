@@ -1016,6 +1016,42 @@ kbd {
     align-items: center;
 }
 
+/* Home Page Note */
+.home-note {
+    max-width: 700px;
+    margin: 4rem auto 0;
+    padding: 1.75rem 2.5rem;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.02) 0%, rgba(15, 23, 42, 0.05) 100%);
+    border: 1px solid var(--border-light);
+    border-radius: 24px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.home-note-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--accent-primary);
+    margin-bottom: 0.75rem;
+    opacity: 0.9;
+}
+
+.home-note p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+    font-weight: 500;
+}
+
 .btn-primary {
     background: var(--accent-primary);
     color: white;

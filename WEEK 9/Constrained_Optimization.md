@@ -1,3 +1,30 @@
+<div class="callout callout-important" style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border: 1px solid #ddd6fe; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1); margin-bottom: 3rem; border-left: 5px solid #8b5cf6;">
+    <div class="callout-title" style="color: #6d28d9; font-size: 0.8rem; letter-spacing: 0.1em; font-weight: 900; display: flex; align-items: center; gap: 0.6rem;">
+        <i data-lucide="video" style="width: 16px; height: 16px;"></i>
+        <span>RECOMMENDED LECTURES (HINDI)</span>
+    </div>
+    <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 1.25rem;">
+        <div>
+            <a href="https://youtu.be/KWGkydU2Lqs" target="_blank" style="color: #5b21b6; text-decoration: none; font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 0.6rem; transition: all 0.2s ease;">
+                Constrained Optimization - Full Concept (Hindi)
+                <i data-lucide="external-link" style="width: 18px; height: 18px; opacity: 0.7;"></i>
+            </a>
+            <p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: #7c3aed; opacity: 0.8; font-weight: 500;">
+                A detailed explanation of Lagrange Multipliers and Gradient Dynamics.
+            </p>
+        </div>
+        <div>
+            <a href="https://youtu.be/zKyuBNPKjYY" target="_blank" style="color: #5b21b6; text-decoration: none; font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 0.6rem; transition: all 0.2s ease;">
+                KKT Conditions - Detailed Explanation (Hindi)
+                <i data-lucide="external-link" style="width: 18px; height: 18px; opacity: 0.7;"></i>
+            </a>
+            <p style="margin: 0.4rem 0 0 0; font-size: 0.9rem; color: #7c3aed; opacity: 0.8; font-weight: 500;">
+                Understanding Karush-Kuhn-Tucker conditions for inequality constraints.
+            </p>
+        </div>
+    </div>
+</div>
+
 # WEEK 9: Constrained Optimization and Logistic Regression
 
 Many modern machine learning algorithms rely on optimizing objective functions under specific mathematical or physical constraints. The **Method of Lagrange Multipliers** provides a robust framework for finding extrema in these equality-constrained environments.

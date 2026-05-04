@@ -171,6 +171,16 @@ function loadHome() {
                         <i data-lucide="search" style="width:18px;height:18px;"></i> Quick Search <kbd>Ctrl K</kbd>
                     </button>
                 </div>
+                <div class="home-note">
+                    <div class="home-note-title">
+                        <i data-lucide="info" style="width: 14px; height: 14px;"></i>
+                        <span>Pedagogical Guidance</span>
+                    </div>
+                    <p>
+                        The primary learning resource for this course is the official instructor sessions. 
+                        For additional conceptual support, elective <strong>Hindi lectures</strong> are available at the beginning of select modules throughout this handbook.
+                    </p>
+                </div>
             </div>
         </div>
     `;
