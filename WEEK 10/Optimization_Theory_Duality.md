@@ -92,6 +92,27 @@ A constraint $a^T x \leq b$ is **affine** and always results in a convex halfspa
 
 ---
 
+## 2.5 Function Monotonicity (Increasing/Decreasing)
+
+To check whether a function $f(x)$ is increasing or decreasing at a point, you just need to look at its **first derivative**.
+
+### Core Idea
+*   **If $f'(x) > 0$:** The function is **increasing** at that point.
+*   **If $f'(x) < 0$:** The function is **decreasing** at that point.
+*   **If $f'(x) = 0$:** The point is **critical** (could be a local maximum, local minimum, or a saddle point).
+
+### Visual Rule (The Main Thing)
+<div class="callout" style="background: rgba(15, 23, 42, 0.03); border: 1px solid #e2e8f0; border-left: 5px solid #0f172a; padding: 1.5rem; margin: 2rem 0; border-radius: 4px;">
+$$f'(x) = \begin{cases} > 0 & \text{increasing} \\ < 0 & \text{decreasing} \\ = 0 & \text{critical point} \end{cases}$$
+</div>
+
+### Step-by-Step Verification
+1.  **Differentiate** the function to find $f'(x)$.
+2.  **Plug in** the specific point $x = a$ you wish to check.
+3.  **Evaluate the sign** of $f'(a)$ to determine monotonicity.
+
+---
+
 ## 3. Theorems and Proofs: Convex Functions
 
 ### Property 1: Gradient Condition for a Local Minimum
