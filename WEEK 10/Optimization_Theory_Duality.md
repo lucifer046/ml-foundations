@@ -235,16 +235,23 @@ $$A^{-1} = \frac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$$
 </div>
 
 ### 6.4 Deriving the Normal Equation
-The goal is to minimize $L(w) = \|Xw - y\|^2$. The optimal solution satisfies:
-<div class="formula-box">
+The goal is to minimize $L(w) = \|Xw - y\|^2$. The optimal solution satisfies the **Normal Equation**:
+
+<div class="callout callout-important" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 1px solid #cbd5e1; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); border-left: 8px solid #0f172a; margin: 2.5rem 0; padding: 2rem;">
+<div class="callout-title" style="color: #0f172a; font-size: 0.85rem; letter-spacing: 0.2em; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+<i data-lucide="binary" style="width: 18px; height: 18px;"></i>
+Major Formula: The Normal Equation
+</div>
+<div style="font-size: 1.75rem; text-align: center; color: #000;">
 $$w^* = (X^TX)^{-1}X^Ty$$
+</div>
 </div>
 
 ---
 
-## 7. Practice Problem: Detailed Solution
+## 7. Practice Problem 1: Analytical Solution (Normal Equation)
 
-> **Problem:** Find the optimal $w^*$ for the following dataset:
+> **Problem 1:** Find the optimal $w^*$ for the following dataset:
 > | $X$ | $y$ |
 > |---|---|
 > | $[1, 0]$ | $1.5$ |
@@ -284,7 +291,124 @@ $$w^* = (X^T X)^{-1} X^T y = \frac{1}{29} \begin{bmatrix} 18 & -31 \\ -31 & 55 \
 
 ---
 
-## 8. Worked Examples
+## 8. Practice Problems 2 & 3: Gradient Descent
+
+> **Context:** Using the same dataset from Problem 1, we now apply **Gradient Descent** to iteratively find the optimal $w^*$ instead of the closed-form analytical method.
+>
+> | $X$ | $y$ |
+> |---|---|
+> | $[1, 0]$ | $1.5$ |
+> | $[2, 1]$ | $2.9$ |
+> | $[3, 2]$ | $3.4$ |
+> | $[4, 2]$ | $3.8$ |
+> | $[5, 3]$ | $5.3$ |
+
+The **Sum of Squares Error (SSE)** loss function in matrix form is:
+<div class="formula-box">
+$$L(w) = \|Xw - y\|^2 = (Xw - y)^T(Xw - y)$$
+</div>
+
+Its **gradient** with respect to $w$ is:
+<div class="formula-box">
+$$\nabla_w L = 2X^T(Xw - y)$$
+</div>
+
+---
+
+### Problem 2: Gradient at $t = 1$
+
+> **Problem 2:** Let $w^1$ be initialized to $\begin{bmatrix} 0.1 \\ 0.1 \end{bmatrix}$. For the first iteration $t = 1$, compute the gradient with respect to $w^1$.
+
+#### Step 1: Identify $X$, $y$, and $w^1$
+
+<div class="formula-box">
+$$X = \begin{bmatrix} 1 & 0 \\ 2 & 1 \\ 3 & 2 \\ 4 & 2 \\ 5 & 3 \end{bmatrix}, \quad y = \begin{bmatrix} 1.5 \\ 2.9 \\ 3.4 \\ 3.8 \\ 5.3 \end{bmatrix}, \quad w^1 = \begin{bmatrix} 0.1 \\ 0.1 \end{bmatrix}$$
+</div>
+
+#### Step 2: Compute the Prediction Vector $Xw^1$
+
+Multiply each row of $X$ by $w^1 = [0.1,\ 0.1]^T$:
+
+$$Xw^1 = \begin{bmatrix} 1(0.1) + 0(0.1) \\ 2(0.1) + 1(0.1) \\ 3(0.1) + 2(0.1) \\ 4(0.1) + 2(0.1) \\ 5(0.1) + 3(0.1) \end{bmatrix} = \begin{bmatrix} 0.1 \\ 0.3 \\ 0.5 \\ 0.6 \\ 0.8 \end{bmatrix}$$
+
+#### Step 3: Compute the Residual Vector $Xw^1 - y$
+
+$$Xw^1 - y = \begin{bmatrix} 0.1 - 1.5 \\ 0.3 - 2.9 \\ 0.5 - 3.4 \\ 0.6 - 3.8 \\ 0.8 - 5.3 \end{bmatrix} = \begin{bmatrix} -1.4 \\ -2.6 \\ -2.9 \\ -3.2 \\ -4.5 \end{bmatrix}$$
+
+#### Step 4: Compute $X^T(Xw^1 - y)$
+
+$$X^T = \begin{bmatrix} 1 & 2 & 3 & 4 & 5 \\ 0 & 1 & 2 & 2 & 3 \end{bmatrix}$$
+
+**Row 1** (corresponds to $w_1$):
+$$1(-1.4) + 2(-2.6) + 3(-2.9) + 4(-3.2) + 5(-4.5)$$
+$$= -1.4 - 5.2 - 8.7 - 12.8 - 22.5 = -50.6$$
+
+**Row 2** (corresponds to $w_2$):
+$$0(-1.4) + 1(-2.6) + 2(-2.9) + 2(-3.2) + 3(-4.5)$$
+$$= 0 - 2.6 - 5.8 - 6.4 - 13.5 = -28.3$$
+
+So:
+$$X^T(Xw^1 - y) = \begin{bmatrix} -50.6 \\ -28.3 \end{bmatrix}$$
+
+#### Step 5: Multiply by 2 to Get the Full Gradient
+
+<div class="formula-box">
+$$\nabla_{w^1} L = 2 \cdot X^T(Xw^1 - y) = 2 \begin{bmatrix} -50.6 \\ -28.3 \end{bmatrix} = \begin{bmatrix} -101.2 \\ -56.6 \end{bmatrix}$$
+</div>
+
+> [!IMPORTANT]
+> **Answer (Problem 2):** The gradient at $t = 1$ is $\nabla_{w^1} L = \begin{bmatrix} -101.2 \\ -56.6 \end{bmatrix}$.
+
+> [!NOTE]
+> **Interpretation:** Both components are **negative**, which means the loss is decreasing in the direction of increasing $w_1$ and $w_2$. Gradient descent will therefore push $w$ in the **positive** direction — towards larger values — on the next step.
+
+---
+
+### Problem 3: Gradient Descent Update at $t = 2$
+
+> **Problem 3:** Using the gradient descent update equation with learning rate $\eta_t = 0.1$, compute the value of $w$ at $t = 2$.
+
+#### Gradient Descent Update Rule
+<div class="formula-box">
+$$w^{t+1} = w^t - \eta_t \cdot \nabla_{w^t} L$$
+</div>
+
+#### Step 1: Identify All Known Values
+
+- Current weights: $w^1 = \begin{bmatrix} 0.1 \\ 0.1 \end{bmatrix}$
+- Learning rate: $\eta_1 = 0.1$
+- Gradient from Q6: $\nabla_{w^1} L = \begin{bmatrix} -101.2 \\ -56.6 \end{bmatrix}$
+
+#### Step 2: Apply the Update Rule
+
+$$w^2 = w^1 - \eta_1 \cdot \nabla_{w^1} L$$
+
+$$w^2 = \begin{bmatrix} 0.1 \\ 0.1 \end{bmatrix} - 0.1 \cdot \begin{bmatrix} -101.2 \\ -56.6 \end{bmatrix}$$
+
+$$w^2 = \begin{bmatrix} 0.1 \\ 0.1 \end{bmatrix} - \begin{bmatrix} -10.12 \\ -5.66 \end{bmatrix}$$
+
+$$w^2 = \begin{bmatrix} 0.1 + 10.12 \\ 0.1 + 5.66 \end{bmatrix}$$
+
+<div class="formula-box">
+$$w^2 = \begin{bmatrix} 10.22 \\ 5.76 \end{bmatrix}$$
+</div>
+
+> [!IMPORTANT]
+> **Answer (Problem 3):** The value of $w$ at $t = 2$ is $w^2 = \begin{bmatrix} 10.22 \\ 5.76 \end{bmatrix}$.
+
+> [!CAUTION]
+> **Why is $w^2$ so far from $w^* \approx [1.255, -0.317]$?** The learning rate $\eta = 0.1$ is **very large** relative to the scale of this problem. The gradient magnitude is ~$101$ and ~$57$, so a step size of $0.1$ produces a jump of ~$10$ and ~$5.7$ in one iteration. In practice, a much smaller learning rate (e.g., $10^{-4}$) or **learning rate scheduling** would be required for stable convergence. This is a key contrast between the analytical method (exact, one-shot) and gradient descent (iterative, sensitive to hyperparameters).
+
+#### Summary: Analytical vs. Gradient Descent
+
+| Method | Result after one step | Exact? |
+|---|---|---|
+| **Analytical (Normal Equation)** | $w^* = [1.255, -0.317]^T$ | ✅ Yes |
+| **Gradient Descent (t=2)** | $w^2 = [10.22, 5.76]^T$ | ❌ Not yet — needs many iterations |
+
+---
+
+## 9. Worked Examples
 
 ### Example 1: Minimize $f(x) = x^2$ subject to $g(x) \leq 0$
 **Problem:** $\min_x x^2$ subject to $(x-4)(x-2) \leq 0$
